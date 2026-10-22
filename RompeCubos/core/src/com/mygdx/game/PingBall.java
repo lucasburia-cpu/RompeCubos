@@ -6,10 +6,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class PingBall extends ElementoJuego{
+public class PingBall implements Colisionable{
 	    private int x;
 	    private int y;
-	    private int size;
+	    private final int size;
 	    private int xSpeed;
 	    private int ySpeed;
 	    private Color color = Color.WHITE;
@@ -34,7 +34,27 @@ public class PingBall extends ElementoJuego{
 	    	this.x = x;
 	        this.y = y;
 	    }
-	    public int getY() {return y;}
+	    
+	    @Override
+	    public int getX() {
+	    	return x - size;
+	    }	    
+	    
+	    @Override
+	    public int getY() {
+	    	return y - size;
+	    }
+	    
+	    @Override
+	    public int getWidth() {
+	    	return size * 2;
+	    }
+	    
+	    @Override
+	    public int getHeight() {
+	    	return size * 2;
+	    }
+	    
 	    
 	    public void draw(ShapeRenderer shape){
 	        shape.setColor(color);
@@ -62,23 +82,19 @@ public class PingBall extends ElementoJuego{
 	            color = Color.WHITE;
 	        }
 	    }
-	    private boolean collidesWith(Paddle pp) {
 
-	    	boolean intersectaX = (pp.getX() + pp.getWidth() >= x-size) && (pp.getX() <= x+size);
-	        boolean intersectaY = (pp.getY() + pp.getHeight() >= y-size) && (pp.getY() <= y+size);		
-	    	return intersectaX && intersectaY;
-	    }
-	    
 	    public void checkCollision(Block block) {
 	        if(collidesWith(block)){
 	            ySpeed = - ySpeed;
-	            block.destroyed = true;
+	            block.destruido = true;
 	        }
 	    }
-	    private boolean collidesWith(Block bb) {
+	    
+	    // aprovechar polimorfismo de Colisionable
+	    private boolean collidesWith(Colisionable objetoColicionado) {
 
-	    	boolean intersectaX = (bb.x + bb.width >= x-size) && (bb.x <= x+size);
-	        boolean intersectaY = (bb.y + bb.height >= y-size) && (bb.y <= y+size);		
+	    	boolean intersectaX = (objetoColicionado.getX() + objetoColicionado.getWidth() >= x-size) && (objetoColicionado.getX() <= x + size);
+	        boolean intersectaY = (objetoColicionado.getY() + objetoColicionado.getHeight() >= y- size) && (objetoColicionado.getY() <= y+size);		
 	    	return intersectaX && intersectaY;
 	    }
 	    
