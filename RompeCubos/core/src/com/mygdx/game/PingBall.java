@@ -6,7 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class PingBall {
+public class PingBall extends ElementoJuego{
 	    private int x;
 	    private int y;
 	    private int size;
