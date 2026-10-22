@@ -1,29 +1,49 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.Color;
 
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.Color;
 
-public class Block {
-    int x,y,width,height;
-    Color cc;
-    boolean destroyed;
+public class Block extends ElementoJuego{
+    private final Color cc;
+    private int golpesRestantes;
+    boolean destruido;
     
-    public Block(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        destroyed = false;
-        Random r = new Random(x+y);
-        
-       cc = new Color(0.1f+r.nextInt(1), r.nextInt(1), r.nextInt(1), 10);
-  
+    public Block(int x, int y, int width, int height, Color color, int golpes) {
+    	super(x,y,width,height);
+        this.cc = color;
+        this.golpesRestantes = golpes;
+        this.destruido = false;
     }
+    
+    
+    public static BlockBuilder builder() {
+    	return new BlockBuilder();
+    }
+    
+    // resta los golpes recibidos y si no quedan golpes restantes se destruye el bloque
+    public void golpeado() {
+    	golpesRestantes--;
+    	if(golpesRestantes <= 0) {
+    		destruido = true;
+    	}
+    }
+    
+    
+    public boolean EstaDestruido() {
+    	return destruido; 
+    }
+    
+    public int getGolpesRestantes() {
+    	return golpesRestantes;
+    }
+    
+    @Override
     public void draw(ShapeRenderer shape){
-    	shape.setColor(cc);
-        shape.rect(x, y, width, height);
+    	shape.setColor(golpesRestantes > 1 ? Color.GRAY : cc);
+        shape.rect(getX(), getY(), getWidth(), getHeight());
     }
 }
