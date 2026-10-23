@@ -17,6 +17,12 @@ public class BlockBuilder {
 		return this;
 	}
 	
+	public BlockBuilder dimension(int width, int height) {
+		this.width = width;
+		this.height = height;
+		return this;
+	}
+	
 	public BlockBuilder golpes(int golpes) {
 		this.golpes = golpes;
 		return this;
