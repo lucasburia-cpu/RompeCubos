@@ -28,9 +28,10 @@ public class EstadoJuego {
 	    nivel = 1;
 	}
 
-	/** Reinicio tras perder todas las vidas: vuelve al nivel 1 conservando el puntaje. */
+	/** Reinicio tras perder todas las vidas: vuelve al nivel 1 y puntaje vuelve a 0. */
 	public void reiniciarPartida() {
 		vidas = VIDAS_INICIALES;
+		puntaje = 0;
 	    nivel = 1;
 	}
 
