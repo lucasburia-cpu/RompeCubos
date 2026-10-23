@@ -28,11 +28,19 @@ public class PingBall implements Colisionable{
 	    	return estaQuieto;
 	    }
 	    public void setEstaQuieto(boolean bb) {
-	    	estaQuieto=bb;
+	    	estaQuieto = bb;
+	    }
+	    
+	    public boolean seFueAbajo() {
+	    	return (y + size) < 0;
 	    }
 	    public void setXY(int x, int y) {
 	    	this.x = x;
 	        this.y = y;
+	    }
+	    
+	    public int getCentroY() {
+	    	return y;
 	    }
 	    
 	    @Override
@@ -86,7 +94,7 @@ public class PingBall implements Colisionable{
 	    public void checkCollision(Block block) {
 	        if(collidesWith(block)){
 	            ySpeed = - ySpeed;
-	            block.destruido = true;
+	            block.golpeado();
 	        }
 	    }
 	    
