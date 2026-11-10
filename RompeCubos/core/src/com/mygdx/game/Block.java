@@ -3,14 +3,10 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.Color;
 
-import java.util.Random;
-
-import com.badlogic.gdx.graphics.Color;
-
 public class Block extends ElementoJuego{
     private final Color cc;
     private int golpesRestantes;
-    boolean destruido;
+    private boolean destruido;
     
     public Block(int x, int y, int width, int height, Color color, int golpes) {
     	super(x,y,width,height);
@@ -23,15 +19,6 @@ public class Block extends ElementoJuego{
     public static BlockBuilder builder() {
     	return new BlockBuilder();
     }
-    
-    // resta los golpes recibidos y si no quedan golpes restantes se destruye el bloque
-    public void golpeado() {
-    	golpesRestantes--;
-    	if(golpesRestantes <= 0) {
-    		destruido = true;
-    	}
-    }
-    
     
     public boolean EstaDestruido() {
     	return destruido; 
@@ -46,4 +33,14 @@ public class Block extends ElementoJuego{
     	shape.setColor(golpesRestantes > 1 ? Color.GRAY : cc);
         shape.rect(getX(), getY(), getWidth(), getHeight());
     }
+
+    // resta los golpes recibidos y si no quedan golpes restantes se destruye el bloque
+	@Override
+	public void Coaliciona() {
+		golpesRestantes--;
+		if(golpesRestantes <= 0) {
+			destruido = true;
+		}
+		
+	}
 }
