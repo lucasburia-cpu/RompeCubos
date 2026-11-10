@@ -5,6 +5,6 @@ public interface Colisionable {
 	    int getY();
 	    int getWidth();
 	    int getHeight();
-	    void Coaliciona();
+	    
 	
 }
