@@ -27,21 +27,20 @@ public class PingBall implements Colisionable{
 	    public boolean estaQuieto() {
 	    	return estaQuieto;
 	    }
-	    public void setEstaQuieto(boolean bb) {
-	    	estaQuieto = bb;
+	    
+	    public void reposarSobre(Colisionable base) {
+	        x = base.getX() + base.getWidth() / 2 - 5;
+	        y = base.getY() + base.getHeight() + 11;
+	    }
+	    
+	    public void lanzar() {
+	        estaQuieto = false;
 	    }
 	    
 	    public boolean seFueAbajo() {
 	    	return (y + size) < 0;
 	    }
-	    public void setXY(int x, int y) {
-	    	this.x = x;
-	        this.y = y;
-	    }
 	    
-	    public int getCentroY() {
-	    	return y;
-	    }
 	    
 	    @Override
 	    public int getX() {
@@ -71,6 +70,7 @@ public class PingBall implements Colisionable{
 	    
 	    public void update() {
 	    	if (estaQuieto) return;
+	    	color = Color.WHITE;
 	        x += xSpeed;
 	        y += ySpeed;
 	        if (x-size < 0 || x+size > Gdx.graphics.getWidth()) {
@@ -81,20 +81,11 @@ public class PingBall implements Colisionable{
 	        }
 	    }
 	    
-	    public void checkCollision(Paddle paddle) {
-	        if(collidesWith(paddle)){
+	    public void checkCollision(Golpeable objeto) {
+	        if (collidesWith(objeto)) {
 	            color = Color.GREEN;
 	            ySpeed = -ySpeed;
-	        }
-	        else{
-	            color = Color.WHITE;
-	        }
-	    }
-
-	    public void checkCollision(Block block) {
-	        if(collidesWith(block)){
-	            ySpeed = - ySpeed;
-	            block.golpeado();
+	            objeto.Colisiona();
 	        }
 	    }
 	    
