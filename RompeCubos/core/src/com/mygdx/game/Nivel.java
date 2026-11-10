@@ -9,10 +9,14 @@ public abstract class Nivel {
 	private static final int SEPARACION = 10;
 	private static final int MARGEN_IZQUIERDO = 5;
 	
+	private final int filas;
+	
+	protected Nivel(int filas) {
+		this.filas = filas;
+	}
 	
 	public final List<Block> generate(int anchoPantalla, int alturaPantalla){
 		List<Block> blocks = new ArrayList<>();
-		int filas = getFilas();
 		int y = alturaPantalla;
 		for(int fila = 0; fila < filas;fila++) {
 			y -= BLOCK_HEIGHT + SEPARACION;
@@ -27,7 +31,6 @@ public abstract class Nivel {
 		return blocks;
 	}
 	
-	protected abstract int getFilas();
 	protected abstract Block crearBlock(int x, int y, int width, int height, int fila);
 	protected boolean shouldPlaceBlock(int fila, int columna) {
 		return true;
