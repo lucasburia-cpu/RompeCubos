@@ -2,7 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public abstract class ElementoJuego implements Colisionable {
+public abstract class ElementoJuego implements Golpeable {
     private int x;
     private int y;
     private final int width;
@@ -51,7 +51,8 @@ public abstract class ElementoJuego implements Colisionable {
     	
     }
     
-    public void Coalisiona() {
+    @Override
+    public void Colisiona() {
     	
     }
 }
