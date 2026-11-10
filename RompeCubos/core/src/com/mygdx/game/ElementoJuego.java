@@ -39,11 +39,19 @@ public abstract class ElementoJuego implements Colisionable {
     	this.x = x; 
     }
 
-    protected void setY(int y) { this.y = y; }
+    protected void setY(int y) { 
+    	this.y = y; 
+    }
 
     // cada objeto implementa la forma en que se dibuja
     public abstract void draw(ShapeRenderer shape);
 
     /** Gancho: por defecto un objeto no cambia con el tiempo. */
-    public void update() { }
+    public void update() { 
+    	
+    }
+    
+    public void Coalisiona() {
+    	
+    }
 }
