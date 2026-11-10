@@ -1,8 +1,8 @@
 package com.mygdx.game;
-/**
+/*
 	 * GM-6 (Singleton): estado global de la partida (vidas, puntaje y nivel).
 	 * Debe existir una unica instancia compartida por toda las partidas.
-	 */
+*/
 public class EstadoJuego {
 	public static final int VIDAS_INICIALES = 3;
 	private static EstadoJuego instancia;
