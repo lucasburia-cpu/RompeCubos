@@ -1,17 +1,40 @@
 package com.mygdx.game;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.IntFunction;
+
+
 public class CreadorDeNiveles {
-	private CreadorDeNiveles() {}
+	private static final int FILAS_BASE = 2;
 	
-	public static Nivel SelectorNivel(int nivel) {
-		int filas = 2 + nivel;
-		switch (nivel % 3) {
-			case 1:
-				return new NivelBasico(filas);
-			case 2:
-				return new NivelIntercado(filas);
-			default:
-				return new NivelReforzado(filas);
-		}
+	
+    private interface FabricaNivel {
+        Nivel crear(int filas);
+    }
+
+    private static final List<FabricaNivel> TIPOS = Arrays.asList(
+            new FabricaNivel() {
+                @Override
+                public Nivel crear(int filas) { return new NivelBasico(filas); }
+            },
+            new FabricaNivel() {
+                @Override
+                public Nivel crear(int filas) { return new NivelIntercalado(filas); }
+            },
+            new FabricaNivel() {
+                @Override
+                public Nivel crear(int filas) { return new NivelReforzado(filas); }
+            }
+    );
+	
+	private CreadorDeNiveles() {
+		
 	}
+	
+    public static Nivel crearNivel(int numeroNivel) {
+        int filas = FILAS_BASE + numeroNivel;
+        return TIPOS.get((numeroNivel - 1) % TIPOS.size()).crear(filas);
+    }
+
 }
