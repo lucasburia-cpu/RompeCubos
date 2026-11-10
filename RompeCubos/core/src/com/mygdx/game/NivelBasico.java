@@ -1,15 +1,9 @@
 package com.mygdx.game;
 
 public class NivelBasico extends Nivel{
-	private final int filas;
 	
 	public NivelBasico(int filas) {
-		this.filas = filas;
-	}
-
-	@Override
-	protected int getFilas() {
-		return filas;
+		super(filas);
 	}
 
 	@Override
