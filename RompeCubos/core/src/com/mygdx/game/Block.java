@@ -36,7 +36,7 @@ public class Block extends ElementoJuego{
 
     // resta los golpes recibidos y si no quedan golpes restantes se destruye el bloque
 	@Override
-	public void Coaliciona() {
+	public void Colisiona() {
 		golpesRestantes--;
 		if(golpesRestantes <= 0) {
 			destruido = true;
