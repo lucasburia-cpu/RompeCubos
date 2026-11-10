@@ -1,7 +1,7 @@
 package com.mygdx.game;
 /**
 	 * GM-6 (Singleton): estado global de la partida (vidas, puntaje y nivel).
-	 * Debe existir una única instancia compartida por toda la aplicación.
+	 * Debe existir una unica instancia compartida por toda las partidas.
 	 */
 public class EstadoJuego {
 	public static final int VIDAS_INICIALES = 3;
@@ -11,7 +11,7 @@ public class EstadoJuego {
 	private int nivel;
 
 	private EstadoJuego() {
-		reset();
+		reiniciarPartida();
 	}
 
 	public static synchronized EstadoJuego getInstance() {
@@ -21,14 +21,8 @@ public class EstadoJuego {
 	    return instancia;
 	}
 
-	// se deja estado de juego en el inicio primer nivel, 3 vidas y 0 puntos
-	public void reset() {
-		vidas = VIDAS_INICIALES;
-	    puntaje = 0;
-	    nivel = 1;
-	}
 
-	/** Reinicio tras perder todas las vidas: vuelve al nivel 1 y puntaje vuelve a 0. */
+	/** Reinicio tras perder todas las vidas: vidas = 3, puntaje = 0 y nivel = 1. */
 	public void reiniciarPartida() {
 		vidas = VIDAS_INICIALES;
 		puntaje = 0;
